@@ -33,11 +33,15 @@ client.connect(err => {
 });
 
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static('./dist/notes_MEAN'));
 
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/notes_MEAN/'}),
+);
 
 app.use('/api', api);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist/notes_MEAN/index.html'));
+// });
 app.listen(port, () => console.log(`Server started on Port ${port}`));
