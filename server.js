@@ -14,9 +14,20 @@ const port = process.env.PORT || 5000;
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:password@123@cluster0-zt42g.mongodb.net/db_notes?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+
+/*mongoset*/
+const mongooseSets={
+    keepAlive: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }; 
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri,mongooseSets);
 client.connect(err => {
   const collection = client.db("db_notes").collection("collection_notes");
+   console.log("Successfully connected to the database");    
   // perform actions on the collection object
   client.close();
 });
