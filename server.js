@@ -34,10 +34,13 @@ client.connect(err => {
 
 
 // app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static('./dist/notes_Mean'));
+app.use(express.static('./dist/notes_MEAN'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/notes_Mean/'}),
+    res.sendFile('index.html', {root: 'dist/notes_MEAN/'}),
+);
+app.get('/test', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/notes_MEAN/'}),
 );
 
 app.use('/api', api);
